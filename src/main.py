@@ -81,7 +81,7 @@ def main(cfg: DictConfig):
     
     logger.info("Creating Samplers")
 
-    all_lengths = dataset.get_lengths()
+    all_lengths = dataset.lengths()
     logger.info("Obtained sequence lengths from the dataset")
     train_lengths = all_lengths[train_dataset.indices].tolist()
     val_lengths = all_lengths[val_dataset.indices].tolist()
