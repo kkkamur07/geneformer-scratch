@@ -64,59 +64,60 @@ def main(cfg: DictConfig):
     torch.compile(student)
     logger.info(f"Student model compiled with torch.compile()")
     
-    # Load dataset
-    logger.info("Loading dataset...")
-    dataset = GeneformerDataset(cfg.data.dataset_path)
+    #! There is something fundamentally wrong here.
+    # # Load dataset
+    # logger.info("Loading dataset...")
+    # dataset = GeneformerDataset(cfg.data.dataset_path)
     
-    # Split into train/val
-    train_size = int(len(dataset) * cfg.data.train_split)
-    val_size = len(dataset) - train_size
+    # # Split into train/val
+    # train_size = int(len(dataset) * cfg.data.train_split)
+    # val_size = len(dataset) - train_size
     
-    train_dataset, val_dataset = torch.utils.data.random_split(
-        dataset, [train_size, val_size]
-    )
+    # train_dataset, val_dataset = torch.utils.data.random_split(
+    #     dataset, [train_size, val_size]
+    # )
     
-    logger.info(f"Train size: {len(train_dataset):,}")
-    logger.info(f"Val size: {len(val_dataset):,}")
+    # logger.info(f"Train size: {len(train_dataset):,}")
+    # logger.info(f"Val size: {len(val_dataset):,}")
     
-    logger.info("Creating Samplers")
+    # logger.info("Creating Samplers")
 
-    all_lengths = dataset.lengths()
-    logger.info("Obtained sequence lengths from the dataset")
-    train_lengths = all_lengths[train_dataset.indices].tolist()
-    val_lengths = all_lengths[val_dataset.indices].tolist()
+    # all_lengths = dataset.lengths()
+    # logger.info("Obtained sequence lengths from the dataset")
+    # train_lengths = all_lengths[train_dataset.indices].tolist()
+    # val_lengths = all_lengths[val_dataset.indices].tolist()
     
-    train_sampler = LengthGroupedSampler(
-        batch_size=cfg.data.batch_size,
-        dataset=train_dataset,
-        lengths=train_lengths,
-        generator=generator
-    )
+    # train_sampler = LengthGroupedSampler(
+    #     batch_size=cfg.data.batch_size,
+    #     dataset=train_dataset,
+    #     lengths=train_lengths,
+    #     generator=generator
+    # )
     
-    val_sampler = LengthGroupedSampler(
-        batch_size=cfg.data.batch_size,
-        dataset=val_dataset,
-        lengths=val_lengths,
-        generator=None
-    )
+    # val_sampler = LengthGroupedSampler(
+    #     batch_size=cfg.data.batch_size,
+    #     dataset=val_dataset,
+    #     lengths=val_lengths,
+    #     generator=None
+    # )
 
     
-    # Create dataloaders
-    train_loader = DataLoader(
-        train_dataset,
-        sampler=train_sampler,
-        num_workers=cfg.data.num_workers,
-        pin_memory=cfg.data.pin_memory,
-        prefetch_factor=cfg.data.prefetch_factor if cfg.data.num_workers > 0 else None
-    )
+    # # Create dataloaders
+    # train_loader = DataLoader(
+    #     train_dataset,
+    #     sampler=train_sampler,
+    #     num_workers=cfg.data.num_workers,
+    #     pin_memory=cfg.data.pin_memory,
+    #     prefetch_factor=cfg.data.prefetch_factor if cfg.data.num_workers > 0 else None
+    # )
     
-    val_loader = DataLoader(
-        val_dataset,
-        sampler=val_sampler,
-        num_workers=cfg.data.num_workers,
-        pin_memory=cfg.data.pin_memory,
-        prefetch_factor=cfg.data.prefetch_factor if cfg.data.num_workers > 0 else None
-    )
+    # val_loader = DataLoader(
+    #     val_dataset,
+    #     sampler=val_sampler,
+    #     num_workers=cfg.data.num_workers,
+    #     pin_memory=cfg.data.pin_memory,
+    #     prefetch_factor=cfg.data.prefetch_factor if cfg.data.num_workers > 0 else None
+    # )
     
     logger.info(f"DataLoaders created")
     

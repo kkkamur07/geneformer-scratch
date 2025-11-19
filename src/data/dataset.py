@@ -3,6 +3,7 @@ from datasets import load_from_disk
 import numpy as np
 import torch
 
+#! There is something fundamentally wrong here.
 class GeneformerDataset(Dataset):
     def __init__(self, dataset_path_or_obj, indices=None, lengths=None):
         # Load dataset only if it's a path
