@@ -162,3 +162,5 @@ cython_debug/
 .DS_Store
 .pre-commit-config.yaml
 mainData/
+models/geneformer-104M/
+models/geneformer-10M/

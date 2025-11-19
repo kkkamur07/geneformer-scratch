@@ -1,0 +1,75 @@
+# Names
+names:
+  experiment_name: "geneformer_distillation"
+  model_name: "student_geneformer"
+  data_name: "genecorpus_30M"
+
+# Teacher Model
+teacher:
+  model_path: "/home/krrish/Desktop/Programming/geneformer-scratch/models/geneformer-10M"
+
+# Student Model
+model:
+  vocab_size: 25426
+  hidden_size: 128
+  num_hidden_layers: 4
+  num_attention_heads: 4
+  intermediate_size: 512
+  max_position_embeddings: 2048
+  hidden_dropout_prob: 0.1
+  attention_probs_dropout_prob: 0.1
+
+# Data
+data:
+  dataset_path: "/home/krrish/Desktop/Programming/geneformer-scratch/mainData/genecorpus_30M_2048_int16.dataset"
+  train_split: 0.9999
+  num_workers: 4
+  pin_memory: true
+  prefetch_factor: 2
+  persistent_workers: true
+  shuffle: true
+  drop_last: true
+
+# Training
+training:
+  temperature: 2.0
+  alpha: 0.7
+  learning_rate: 1e-4
+  warmup_steps: 1000
+  total_steps: 100000
+  batch_size: 12
+  grad_accum_steps: 4  # Effective batch size 48
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  mixed_precision: true
+  betas: [0.9, 0.999]
+  eps: 1e-8
+  log_every: 100
+  val_every: 1000
+  save_every: 5000
+  keep_last_k: 2
+
+# Hardware
+hardware:
+  device: "cuda"
+  mixed_precision: true
+  num_workers: 4
+
+# Paths
+paths:
+  checkpoint_dir: "outputs/checkpoints/${names.experiment_name}"
+  log_dir: "outputs/logs"
+  output_dir: "outputs/${names.experiment_name}"
+  teacher_model_path: "${teacher.model_path}"
+  dataset_path: "${data.dataset_path}"
+
+# Seed
+seed: 42
+
+# Hydra settings
+hydra:
+  run:
+    dir: outputs/${names.experiment_name}/${now:%Y-%m-%d_%H-%M-%S}
+  sweep:
+    dir: multirun/${names.experiment_name}/${now:%Y-%m-%d_%H-%M-%S}
+    subdir: ${hydra.job.num}
