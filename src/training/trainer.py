@@ -281,7 +281,7 @@ class DistillationTrainer:
                             self.logger.log_training_step(
                                 step=self.global_step,
                                 loss=avg_loss,
-                                lr=lr,
+                                lr=f"{lr:.8f}",
                                 kl_loss=avg_kl_loss,
                                 ce_loss=avg_ce_loss
                             )

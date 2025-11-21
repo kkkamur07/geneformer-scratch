@@ -11,6 +11,7 @@ Here we are trying to distill a 4M parameter model from 10M parameter model whic
 5. Data was pretokenized that helped but also it was the most important part of the paper, needed to build our own collator. 
 6. General Clarity Needed on what is the BERT masking strategy.
 7. The dataset for the V2 models are not being provided 104 M
+8. Working with a 27 Mn rows with 500 tokens amounts to 10B tokens approx, really difficult to work with it. Major optimizations in dataset.py
 
 In general it proved difficult to replicate but not impossible. 
 

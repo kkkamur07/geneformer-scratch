@@ -72,7 +72,7 @@ def main(cfg: DictConfig):
     )
     
     # Load the best checkpoint
-    ckpt_path = "/home/krrish/Desktop/Programming/geneformer-scratch/outputs/checkpoints/geneformer_distillation/model_best.pt"
+    ckpt_path = "/home/krrish/Desktop/Programming/geneformer-scratch/outputs/checkpoints_/geneformer_distillation/model_best.pt"
     if os.path.exists(ckpt_path):
         checkpoint = torch.load(ckpt_path, map_location=device, weights_only=False)
         
