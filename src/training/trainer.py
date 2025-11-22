@@ -83,7 +83,6 @@ class DistillationTrainer:
         self.val_every = cfg.training.val_every
         self.log_every = cfg.training.log_every
         
-        self.global_step = 0
         
         if self.logger:
             self.logger.info("DistillationTrainer initialized")
@@ -250,7 +249,6 @@ class DistillationTrainer:
             desc="Training",
             unit="step",
         )
-        pbar.update(self.global_step)
         
         while self.global_step < self.max_steps:
             
@@ -263,9 +261,7 @@ class DistillationTrainer:
                 running_loss += metrics['loss'] / accum_steps
                 running_kl_loss += metrics['kl_loss'] / accum_steps
                 running_ce_loss += metrics['ce_loss'] / accum_steps
-                
-
-                
+                             
                 # Optimizer step
                 if self.amp_grad.should_step():
                     
