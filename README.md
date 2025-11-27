@@ -59,3 +59,5 @@ Perplexity      | 15.59              | 38.91              | +23.32
 ```
 
 I must say that, this might not be a bad down shrinking, probably training them more will improve the accuracy for sure, because it has not seen enough data, maybe we should train this more around 50000 steps more.
+
+Did train for 50000 more steps, I think the model has converged and training is not helping here any more. May be related to more capacity based issues rather than hyper parameters and stuff like that. 
