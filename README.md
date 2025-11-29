@@ -38,8 +38,8 @@ Update : If we train it more then the accuracy improves over time but the margin
 ```bash
 ============================================================
 Metric          | Teacher (Target)   | Student (Yours)    | Gap       
-MLM Accuracy    | 0.3026             | 0.2108             | -0.0918
-Perplexity      | 15.68              | 31.03              | +15.35
+MLM Accuracy    | 0.3070             | 0.2443             | -0.0627
+Perplexity      | 15.70              | 23.96              | +8.26
 ============================================================
 ```
 
@@ -61,3 +61,5 @@ Perplexity      | 15.59              | 38.91              | +23.32
 I must say that, this might not be a bad down shrinking, probably training them more will improve the accuracy for sure, because it has not seen enough data, maybe we should train this more around 50000 steps more.
 
 Did train for 50000 more steps, I think the model has converged and training is not helping here any more. May be related to more capacity based issues rather than hyper parameters and stuff like that. 
+
+So a new learning, I think I might have observed double descent in the Geneformer. Suddenly after 150000 steps the model started to converge more, so I saw accuracy improvements from 0.21 to 0.24, now almost performing as similarly as the teacher model. This makes me imagine what if we train it more, will probably do that and what are the limits of distillation. 
