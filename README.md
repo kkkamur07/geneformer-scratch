@@ -9,9 +9,10 @@ Here we are trying to distill a 4M parameter model from 10M parameter model whic
 3. Due to variable sequence length failed to use `torch.compile()` which builds a dynamic CUDA graph. 
 4. Compute challenges, the data is massive with around 27 Mn rows and 500 tokens per sequences.  
 5. Data was pretokenized that helped but also it was the most important part of the paper, needed to build our own collator. 
-6. General Clarity Needed on what is the BERT masking strategy.
+6. General Clarity Needed on what is the BERT masking strategy. They used the default by they should have mentioned. 
 7. The dataset for the V2 models are not being provided 104 M
 8. Working with a 27 Mn rows with 500 tokens amounts to 10B tokens approx, really difficult to work with it. Major optimizations in dataset.py
+9. Problem of the unavailability of the 104Mn rows dataset so we couldn't validate the V2 & V3 version of the experiment. 
 
 In general it proved difficult to replicate but not impossible. 
 
