@@ -38,8 +38,8 @@ Update : If we train it more then the accuracy improves over time but the margin
 ```bash
 ============================================================
 Metric          | Teacher (Target)   | Student (Yours)    | Gap       
-MLM Accuracy    | 0.3070             | 0.2443             | -0.0627
-Perplexity      | 15.70              | 23.96              | +8.26
+MLM Accuracy    | 0.3059             | 0.2534             | -0.0524
+Perplexity      | 15.40              | 22.48              | +7.08
 ============================================================
 ```
 
