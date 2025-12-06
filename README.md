@@ -64,3 +64,5 @@ I must say that, this might not be a bad down shrinking, probably training them 
 Did train for 50000 more steps, I think the model has converged and training is not helping here any more. May be related to more capacity based issues rather than hyper parameters and stuff like that. 
 
 So a new learning, I think I might have observed double descent in the Geneformer. Suddenly after 150000 steps the model started to converge more, so I saw accuracy improvements from 0.21 to 0.24, now almost performing as similarly as the teacher model. This makes me imagine what if we train it more, will probably do that and what are the limits of distillation. 
+
+Trained from 300000 steps to 600000 steps and there was only a minor bump in accuracy of around 1%, till 300000 thousand it was also at around 24%, now it is at 25%, pretty close to earlier. So the training gains are diminishing, better not to train beyond this.
